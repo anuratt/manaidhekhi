@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <canvas id="bg-canvas"></canvas>
@@ -18,7 +18,7 @@
     <div class="blob blob-2"></div>
 
     <nav>
-        <a href="index.html" class="logo-text">ManaiDekhi</a>
+        <a href="/" class="logo-text">ManaiDekhi</a>
         <div class="nav-links">
             <a href="#collections">Collections</a>
             <a href="#order">Order</a>
@@ -46,28 +46,28 @@
         <h2 class="section-title">Signature Collections</h2>
         <div class="gallery-grid">
             <div class="gallery-item">
-                <img src="../static/images/gallery1.jpg" alt="Heart Candles">
+                <img src="{{ url_for('static', filename='images/gallery1.jpg') }}" alt="Heart Candles">
                 <div class="item-details">
                     <h3>Heart Glass</h3>
                     <p>Subtle sweetness meets vibrant hues</p>
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="../static/images/gallery2.jpg" alt="Coffee Cake Candle">
+                <img src="{{ url_for('static', filename='images/gallery2.jpg') }}" alt="Coffee Cake Candle">
                 <div class="item-details">
                     <h3>Coffee Cake</h3>
                     <p>Rich espresso and vanilla blend</p>
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="../static/images/gallery3.jpg" alt="Bubble Candles">
+                <img src="{{ url_for('static', filename='images/gallery3.jpg') }}" alt="Bubble Candles">
                 <div class="item-details">
                     <h3>Bubble Cubes</h3>
                     <p>Playful geometry in pastel tones</p>
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="../static/images/gallery4.jpg" alt="Dessert Candle">
+                <img src="{{ url_for('static', filename='images/gallery4.jpg') }}" alt="Dessert Candle">
                 <div class="item-details">
                     <h3>Fruity Delight</h3>
                     <p>A cocktail of vibrant berries</p>
@@ -78,7 +78,7 @@
     <section class="fade-in-up" style="background: var(--glass-bg); margin: 2rem 5%; border-radius: 20px; border: 1px solid var(--glass-border); padding: 4rem;">
         <div style="display: flex; flex-wrap: wrap; gap: 3rem; align-items: center;">
             <div style="flex: 1; min-width: 300px;">
-                <img src="../static/images/hero.jpg" alt="Royal Rose Candle" style="width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <img src="{{ url_for('static', filename='images/hero.jpg') }}" alt="Royal Rose Candle" style="width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
             </div>
             <div style="flex: 1; min-width: 300px;">
                 <h2 style="font-family: var(--font-logo); font-size: 3rem; color: var(--primary); margin-bottom: 1rem;">Royal Rose</h2>
@@ -122,18 +122,18 @@
         <h2 class="section-title">On The Gram</h2>
         <a href="https://www.instagram.com/manaidekhi.nepal/" target="_blank" class="insta-handle">@manaidekhi.nepal</a>
         <div class="insta-grid">
-            <img src="../static/images/gallery1.jpg" alt="Instagram Post 1">
-            <img src="../static/images/gallery2.jpg" alt="Instagram Post 2">
-            <img src="../static/images/gallery3.jpg" alt="Instagram Post 3">
-            <img src="../static/images/hero.jpg" alt="Instagram Post 4">
+            <img src="{{ url_for('static', filename='images/gallery1.jpg') }}" alt="Instagram Post 1">
+            <img src="{{ url_for('static', filename='images/gallery2.jpg') }}" alt="Instagram Post 2">
+            <img src="{{ url_for('static', filename='images/gallery3.jpg') }}" alt="Instagram Post 3">
+            <img src="{{ url_for('static', filename='images/hero.jpg') }}" alt="Instagram Post 4">
         </div>
     </section>
 
     <footer style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
         <p>&copy; 2026 ManaiDekhi Scented Candles. Designed exclusively.</p>
-        <a href="admin.html" style="color: inherit; text-decoration: none; font-size: 0.8rem; opacity: 0.5;">Admin</a>
+        <a href="/login" style="color: inherit; text-decoration: none; font-size: 0.8rem; opacity: 0.5;">Admin</a>
     </footer>
 
-    <script src="../static/js/script.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
