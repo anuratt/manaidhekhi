@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ManaiDekhi Scented Candles - Premium Candles in Nepal</title>
+    <meta name="description" content="ManaiDekhi Scented Candles offers handcrafted, premium soy wax candles in Kathmandu, Nepal. 'मन देखी मन सम्म'">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <nav>
+        <a href="/" class="logo-text">ManaiDekhi</a>
+        <div class="nav-links">
+            <a href="#collections">Collections</a>
+            <a href="#order">Order</a>
+            <a href="#instagram">Instagram</a>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                <span class="icon-sun">☀️</span>
+                <span class="icon-moon">🌙</span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>ManaiDekhi</h1>
+            <h2 class="tagline">Scented Candles</h2>
+            <div id="typewriter-text" class="typewriter"></div>
+            <p style="margin-bottom: 2rem; max-width: 600px;">
+                Experience the warmth of our handcrafted, premium soy wax candles. Perfectly curated for your space, creating beautiful aesthetics and signature scents.
+            </p>
+            <a href="#order" class="btn">Order Now</a>
+        </div>
+    </header>
+
+    <section id="collections" class="fade-in-up">
+        <h2 class="section-title">Signature Collections</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="/static/images/gallery1.jpg" alt="Heart Candles">
+                <div class="item-details">
+                    <h3>Heart Glass</h3>
+                    <p>Subtle sweetness meets vibrant hues</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="/static/images/gallery2.jpg" alt="Coffee Cake Candle">
+                <div class="item-details">
+                    <h3>Coffee Cake</h3>
+                    <p>Rich espresso and vanilla blend</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="/static/images/gallery3.jpg" alt="Bubble Candles">
+                <div class="item-details">
+                    <h3>Bubble Cubes</h3>
+                    <p>Playful geometry in pastel tones</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="/static/images/gallery4.jpg" alt="Dessert Candle">
+                <div class="item-details">
+                    <h3>Fruity Delight</h3>
+                    <p>A cocktail of vibrant berries</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="fade-in-up" style="background: var(--glass-bg); margin: 2rem 5%; border-radius: 20px; border: 1px solid var(--glass-border); padding: 4rem;">
+        <div style="display: flex; flex-wrap: wrap; gap: 3rem; align-items: center;">
+            <div style="flex: 1; min-width: 300px;">
+                <img src="/static/images/hero.jpg" alt="Royal Rose Candle" style="width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            </div>
+            <div style="flex: 1; min-width: 300px;">
+                <h2 style="font-family: var(--font-logo); font-size: 3rem; color: var(--primary); margin-bottom: 1rem;">Royal Rose</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">A sophisticated blend of classic rose absolute and warm undertones. Available in our signature glass jar.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="order" class="fade-in-up">
+        <h2 class="section-title">Place an Order</h2>
+        <div class="order-section">
+            <p style="text-align: center; margin-bottom: 2rem;">Discover your signature scent crafted with care.</p>
+            <form id="order-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required placeholder="Your Phone Number">
+                </div>
+                <div class="form-group">
+                    <label for="product">Select Candle Strategy (Placeholder)</label>
+                    <select id="product" required>
+                        <option value="">-- Choose an option --</option>
+                        <option value="candle_custom">Custom Signature Candle</option>
+                        <option value="candle_bulk">Bulk Order for Event</option>
+                        <option value="candle_gift">Gift Set Pack</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Additional Notes (Optional)</label>
+                    <textarea id="message" rows="4" placeholder="Any specific scent requests or delivery details?"></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Submit Order Details</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="instagram" class="instagram-section fade-in-up">
+        <h2 class="section-title">On The Gram</h2>
+        <a href="https://www.instagram.com/manaidekhi.nepal/" target="_blank" class="insta-handle">@manaidekhi.nepal</a>
+        <div class="insta-grid">
+            <img src="/static/images/gallery1.jpg" alt="Instagram Post 1">
+            <img src="/static/images/gallery2.jpg" alt="Instagram Post 2">
+            <img src="/static/images/gallery3.jpg" alt="Instagram Post 3">
+            <img src="/static/images/hero.jpg" alt="Instagram Post 4">
+        </div>
+    </section>
+
+    <footer style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <p>&copy; 2026 ManaiDekhi Scented Candles. Designed exclusively.</p>
+        <a href="/admin" style="color: inherit; text-decoration: none; font-size: 0.8rem; opacity: 0.5;">Admin</a>
+    </footer>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

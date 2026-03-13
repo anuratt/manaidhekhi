@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | ManaiDekhi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        body { margin: 0; padding: 0; display: flex; font-family: var(--font-base); background-color: var(--bg); color: var(--text); }
+        .sidebar { width: 250px; background: var(--glass-bg); height: 100vh; padding: 20px; border-right: 1px solid var(--glass-border); display: flex; flex-direction: column; transition: transform 0.3s; z-index: 1000; position: fixed; top: 0; left: 0; backdrop-filter: blur(15px); }
+        .sidebar h2 { font-family: var(--font-logo); color: var(--primary); margin-bottom: 2rem; font-size: 2rem; }
+        .menu-btn { display: none; background: none; border: none; font-size: 2rem; color: var(--text); cursor: pointer; position: fixed; top: 15px; left: 15px; z-index: 1001; }
+        .nav-item { padding: 15px 10px; margin-bottom: 10px; border-radius: 8px; cursor: pointer; font-weight: 500; transition: background 0.3s; }
+        .nav-item:hover, .nav-item.active { background: rgba(240, 128, 128, 0.2); color: var(--primary); }
+        .content { margin-left: 250px; padding: 40px; flex-grow: 1; min-height: 100vh; overflow-y: auto; transition: margin-left 0.3s; width: calc(100% - 250px); }
+        .card { background: var(--glass-bg); border-radius: 15px; padding: 25px; margin-bottom: 30px; border: 1px solid var(--glass-border); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .card-title { font-size: 1.5rem; margin-bottom: 20px; color: var(--primary); font-family: var(--font-logo); }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid var(--glass-border); }
+        th { font-weight: 600; color: var(--primary); }
+        tr:hover { background: rgba(0,0,0,0.02); }
+        .status-badge { padding: 5px 10px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; display: inline-block; }
+        .status-Pending { background: #ffe4e1; color: #a52a2a; }
+        .status-Confirmed { background: #e8f5e9; color: #2e7d32; }
+        .action-btn { background: none; border: 1px solid var(--primary); color: var(--primary); padding: 5px 10px; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .action-btn:hover { background: var(--primary); color: white; }
+
+        .close-sidebar { display: none; font-size: 2rem; text-align: right; cursor: pointer; color: var(--text); }
+
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+            .content { margin-left: 0; width: 100%; padding-top: 70px; }
+            .menu-btn { display: block; }
+            .close-sidebar { display: block; }
+            table, thead, tbody, th, td, tr { display: block; }
+            th { display: none; }
+            td { position: relative; padding-left: 45%; }
+            td::before { content: attr(data-label); position: absolute; left: 15px; font-weight: 600; }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <canvas id="bg-canvas"></canvas>
+
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+
+    <div class="sidebar" id="sidebar">
+        <div class="close-sidebar" onclick="toggleSidebar()">×</div>
+        <h2>ManaiDekhi</h2>
+        <div class="nav-item active" onclick="showSection('orders')">Manage Orders</div>
+        <div class="nav-item" onclick="showSection('inquiries')">Inquiries</div>
+        <div class="nav-item" onclick="window.location.href='/'">View Website</div>
+        <div style="margin-top:auto;" class="nav-item" id="theme-toggle">
+            <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span> Toggle Theme
+        </div>
+    </div>
+
+    <div class="content" id="content">
+        <div class="card" id="orders-section">
+            <h3 class="card-title">Recent Orders</h3>
+            <table id="orders-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Product</th>
+                        <th>Phone</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card" id="inquiries-section" style="display:none;">
+            <h3 class="card-title">Inquiries</h3>
+            <table id="inquiries-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Message</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.card').forEach(c => c.style.display = 'none');
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById(sectionId + '-section').style.display = 'block';
+            event.target.classList.add('active');
+            if(window.innerWidth <= 768) toggleSidebar();
+        }
+
+        async function loadData() {
+            try {
+                const res = await fetch('/api/data');
+                const data = await res.json();
+
+                const tbody = document.querySelector('#orders-table tbody');
+                tbody.innerHTML = '';
+                if(data.orders && data.orders.length > 0) {
+                    data.orders.reverse().forEach(o => {
+                        tbody.innerHTML += `
+                            <tr>
+                                <td data-label="Date">${o.date.split(' ')[0]}</td>
+                                <td data-label="Name">${o.name}</td>
+                                <td data-label="Product">${o.product}</td>
+                                <td data-label="Phone">${o.phone}</td>
+                                <td data-label="Status"><span class="status-badge status-${o.status}">${o.status}</span></td>
+                                <td data-label="Action">
+                                    <button class="action-btn" onclick="updateStatus('${o.id}', '${o.status === 'Pending' ? 'Confirmed' : 'Pending'}')">
+                                        Mark ${o.status === 'Pending' ? 'Confirmed' : 'Pending'}
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                } else {
+                    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">No orders yet.</td></tr>`;
+                }
+            } catch (err) {
+                console.error("Error loading admin data:", err);
+            }
+        }
+
+        async function updateStatus(id, newStatus) {
+            try {
+                await fetch(`/api/orders/${id}/status`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({status: newStatus})
+                });
+                loadData();
+            } catch (err) {
+                alert("Could not update status");
+            }
+        }
+
+        window.onload = loadData;
+    </script>
+</body>
+</html>

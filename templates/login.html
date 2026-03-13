@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | ManaiDekhi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        body { display: flex; align-items: center; justify-content: center; min-height: 100vh; flex-direction: column; background: var(--bg); }
+        .login-box { background: var(--glass-bg); padding: 3rem; border-radius: 20px; border: 1px solid var(--glass-border); backdrop-filter: blur(20px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; width: 100%; max-width: 400px; }
+        .login-box h2 { font-family: var(--font-logo); color: var(--primary); margin-bottom: 2rem; font-size: 2.5rem; }
+        .form-group { margin-bottom: 1.5rem; text-align: left; }
+        input[type="password"] { width: 100%; padding: 0.8rem 1rem; border-radius: 10px; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.5); font-family: inherit; font-size: 1rem; color: var(--text); }
+        [data-theme="dark"] input[type="password"] { background: rgba(40, 40, 40, 0.5); }
+        .btn { width: 100%; margin-top: 1rem; }
+        .error { color: #f08080; margin-bottom: 1rem; font-size: 0.9rem; }
+    </style>
+</head>
+<body data-theme="light">
+    <canvas id="bg-canvas"></canvas>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    
+    <div class="login-box fade-in-up">
+        <h2>Admin Access</h2>
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+        <form method="POST">
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Enter Password" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+    </div>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
