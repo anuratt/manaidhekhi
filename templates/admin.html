@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard | ManaiDekhi</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="../static/css/style.css">
     <style>
         body { margin: 0; padding: 0; display: flex; font-family: var(--font-base); background-color: var(--bg); color: var(--text); }
         .sidebar { width: 250px; background: var(--glass-bg); height: 100vh; padding: 20px; border-right: 1px solid var(--glass-border); display: flex; flex-direction: column; transition: transform 0.3s; z-index: 1000; position: fixed; top: 0; left: 0; backdrop-filter: blur(15px); }
@@ -54,7 +54,7 @@
         <h2>ManaiDekhi</h2>
         <div class="nav-item active" onclick="showSection('orders')">Manage Orders</div>
         <div class="nav-item" onclick="showSection('inquiries')">Inquiries</div>
-        <div class="nav-item" onclick="window.location.href='/'">View Website</div>
+        <div class="nav-item" onclick="window.location.href='index.html'">View Website</div>
         <div style="margin-top:auto;" class="nav-item" id="theme-toggle">
             <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span> Toggle Theme
         </div>
@@ -98,7 +98,7 @@
         </div>
     </div>
 
-    <script src="/static/js/script.js"></script>
+    <script src="../static/js/script.js"></script>
     <script>
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('open');
